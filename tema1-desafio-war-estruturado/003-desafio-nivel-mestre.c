@@ -151,7 +151,7 @@ int verificarMissao(){
         case 0:{  // "Conquistar 3 territorios cor azul",
             int quantTerritoriosConquistados = 0;
             for (int i = 0; i < sizeof(territorios); i++) {
-                if( strcmp( territorios[i].cor, "azul") ) quantTerritoriosConquistados++;
+                if( strcmp( territorios[i].cor, "azul") == 0 ) quantTerritoriosConquistados++;
             }
             return quantTerritoriosConquistados >= 3;
         }
@@ -159,7 +159,7 @@ int verificarMissao(){
         case 1: { // "Eliminar todas as tropas da cor vermelha",
             quantTropas = 0;
             for (int i = 0; i < sizeof(territorios); i++) {
-                if( strcmp( territorios[i].cor, "vermelha") ) quantTropas++;
+                if( strcmp( territorios[i].cor, "vermelha") == 0 ) quantTropas++;
             }
             return quantTropas <= 0;
         }
@@ -167,7 +167,7 @@ int verificarMissao(){
         case 2: { // "Eliminar todas as tropas da cor verde",
             quantTropas = 0;
             for (int i = 0; i < sizeof(territorios); i++) {
-                if( strcmp( territorios[i].cor, "verde") ) quantTropas++;
+                if( strcmp( territorios[i].cor, "verde") == 0 ) quantTropas++;
             }
             return quantTropas <= 0;
         }
@@ -175,7 +175,7 @@ int verificarMissao(){
         case 3: { // "Possuir mais de 5 tropas da cor preta",
             quantTropas = 0;
             for (int i = 0; i < sizeof(territorios); i++) {
-                if( strcmp( territorios[i].cor, "preta") ) quantTropas+=territorios[i].tropas;
+                if( strcmp( territorios[i].cor, "preta") == 0 ) quantTropas+=territorios[i].tropas;
             }
             return quantTropas >= 5;
         }
@@ -183,7 +183,7 @@ int verificarMissao(){
         case 4: { // "Eliminar todas as tropas da cor amarela"
             quantTropas = 0;
             for (int i = 0; i < sizeof(territorios); i++) {
-                if( strcmp( territorios[i].cor, "amarela") ) quantTropas++;
+                if( strcmp( territorios[i].cor, "amarela") == 0 ) quantTropas++;
             }
             return quantTropas <= 0;
         }
