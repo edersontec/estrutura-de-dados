@@ -127,7 +127,7 @@ Peca gerarPeca(){
 
 void verPecas(Fila* f, Pilha* p){
 
-    printf("=== Ver lista de peças ===\n");
+    printf("\n=== Ver lista de peças ===\n");
 
     if(f->tamanhoAtual == 0) printf("Vazio...\n");
 
@@ -176,6 +176,22 @@ void alimentaFila(Fila* f){
     }
 }
 
+void trocaPecasEntreEstruturas(Fila* f, Pilha* p, int quantTrocas){
+
+    // Verifica se há quantidade disponível para troca
+    if(f->tamanhoAtual < quantTrocas || p->tamanhoAtual < quantTrocas) {
+        printf("Erro: Não há itens suficiente na lista(minimo: %d) e pilha(minimo: %d) para realizar trocas\n", quantTrocas);
+        return;
+    }
+
+    for (int i = 0 ; i < quantTrocas; i++){
+        Peca tmp = p->itens[i]; // salva o item da pilha
+        p->itens[i] = f->itens[i]; // substitui pelo item da fila
+        f->itens[i] = tmp; // salva o item antigo na fila
+    }
+    
+}
+
 // -- FUNCOES ESPECIFICAS
 
 // funcao para liberar memoria e encerrar o programa
@@ -200,6 +216,8 @@ int exibirOpcoesMenu(){
     printf("1. Jogar peça\n");
     printf("2. Reservar peça\n");
     printf("3. Usar peça reservada\n");
+    printf("4. Trocar peça da frente da fila com o topo da pilha\n");
+    printf("5. Trocar os 3 primeiros da fila com as 3 peças da pilha\n");
     printf("0. Sair\n");
     printf("Escolha uma opcao: ");
     scanf("%d", &opcao);
@@ -235,10 +253,19 @@ void exibirMenu(){
                 usarPecaReservada(&pilha);
                 break;
             }
+            case 4: {
+                trocaPecasEntreEstruturas(&fila, &pilha, 1);
+                break;
+            }
+            case 5: {
+                trocaPecasEntreEstruturas(&fila, &pilha, 3);
+                break;
+            }
             case 0: {
                 finalizarJogo();
                 break;
             }
+            
             default: printf("Opcao invalida!\n");
         }
         
